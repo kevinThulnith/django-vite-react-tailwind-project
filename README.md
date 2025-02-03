@@ -2,6 +2,8 @@
 
 A full-stack web application for managing products with <b>user authentication</b> and <b>authorization</b>. Built with <b>Django REST Framework</b> for the backend and <b>Vite + React + Tailwind CSS</b> for the frontend.
 
+<img src="./screenshots/ss5.jpg">
+
 ## 🌟 Features
 
 ### User Authentication
