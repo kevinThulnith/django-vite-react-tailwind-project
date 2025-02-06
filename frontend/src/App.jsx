@@ -11,22 +11,25 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import React from "react";
 
+// TODO: Hnadling logout
 function Logout() {
   localStorage.clear();
   return <Navigate to="/login" />;
 }
 
+// TODO: Register and logout
 function RegisterAndLogout() {
   localStorage.clear();
   return <Register />;
 }
 
+// !App component
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   React.useEffect(() => {
     const accessToken = localStorage.getItem("access");
-    setIsAuthenticated(!!accessToken); // Set true if accessToken exists
+    setIsAuthenticated(!!accessToken); // !Set true if accessToken exists
   }, []);
 
   return (

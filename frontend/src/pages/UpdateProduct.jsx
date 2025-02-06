@@ -34,11 +34,21 @@ function UpdateProduct() {
   }, [id]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setProduct((prevProduct) => ({
-      ...prevProduct,
-      [name]: type === "checkbox" ? checked : value === "true",
-    }));
+    const { name, value, type } = e.target;
+
+    if (type === "radio") {
+      // For radio buttons, convert the value to a boolean
+      setProduct((prevProduct) => ({
+        ...prevProduct,
+        [name]: value === "true", // Convert "true" to true and "false" to false
+      }));
+    } else {
+      // For text fields, assign the value directly
+      setProduct((prevProduct) => ({
+        ...prevProduct,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -86,6 +96,7 @@ function UpdateProduct() {
               required
               id="name"
               type="text"
+              name="name"
               value={product.name}
               onChange={handleChange}
               placeholder="Enter product name"
@@ -103,6 +114,7 @@ function UpdateProduct() {
               required
               id="price"
               type="text"
+              name="price"
               value={product.price}
               onChange={handleChange}
               pattern="[0-9]+(\.[0-9][0-9]?)?"
@@ -122,6 +134,7 @@ function UpdateProduct() {
               required
               id="qty"
               type="text"
+              name="ammount"
               pattern="[0-9]+"
               value={product.ammount}
               onChange={handleChange}
@@ -141,6 +154,7 @@ function UpdateProduct() {
               required
               rows="3"
               id="description"
+              name="description"
               onChange={handleChange}
               value={product.description}
               className="resize-none mt-3 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
@@ -155,8 +169,8 @@ function UpdateProduct() {
               <label className="inline-flex items-center">
                 <input
                   type="radio"
-                  value="true"
                   name="is_active"
+                  value="true"
                   checked={product.is_active === true}
                   onChange={handleChange}
                   className="form-radio"
@@ -166,8 +180,8 @@ function UpdateProduct() {
               <label className="inline-flex items-center ml-6">
                 <input
                   type="radio"
-                  value="false"
                   name="is_active"
+                  value="false"
                   checked={product.is_active === false}
                   onChange={handleChange}
                   className="form-radio"

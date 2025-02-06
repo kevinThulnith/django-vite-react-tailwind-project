@@ -1,39 +1,49 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import api from "../api";
 
 function Home() {
   const [userInfo, setUserInfo] = useState({ username: "", email: "" });
+  const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
 
+  // TODO: Refresh the page when the page is loaded for the first time
   if (!localStorage.getItem("refreshed")) {
     localStorage.setItem("refreshed", "true");
     window.location.reload();
   }
 
-  const fetchData = async () => {
-    try {
-      const res = await api.get("api/user/", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access"),
-        },
-      });
-      setUserInfo(res.data);
-      const resProducts = await api.get("api/products/all/", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access"),
-        },
-      });
-      setProducts(resProducts.data);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
+  // TODO: Fetch user info and products
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await api.get("api/user/", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access"),
+          },
+        });
+        setUserInfo(res.data);
+        const resProducts = await api.get("api/products/all/", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access"),
+          },
+        });
+        setProducts(resProducts.data);
+      } catch (error) {
+        alert(error);
+      }
+    };
     fetchData();
   }, []);
+
+  // TODO: Filter products based on search query
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.id.toString().includes(searchQuery)
+  );
 
   return (
     <div className="container">
@@ -54,56 +64,85 @@ function Home() {
         </a>
       </div>
       <div className="min-w-full bg-white rounded-lg shadow-md p-6 mt-4 overflow-x-auto text-gray-500">
-        <h2 className="text-2xl mb-4 font-medium">View All products</h2>
-        <table className="mt-3 border-collapse table-auto rounded-lg overflow-hidden">
+        <div className="w-full flex justify-between items-center pt-2">
+          <h2 className="text-2xl font-medium">View All Products</h2>
+          <div className="relative">
+            <input
+              type="text"
+              className="px-4 py-2 mt-2 border rounded-lg outline-none bg-slate-200 w-32 focus:w-40 ease-linear duration-150 text-black pr-10"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <FontAwesomeIcon
+              icon={faSearch}
+              style={{
+                fontSize: "18px",
+                position: "absolute",
+                top: "18px",
+                right: "10px",
+              }}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+        <table className="mt-8 border-collapse table-auto rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-gray-200 text-gray-600">
-              <th className=" px-4 py-2 border-b text-left font-medium">Id</th>
+              <th className="px-4 py-2 border-b text-left font-medium">Id</th>
               <th
-                className=" px-4 py-2 border-b text-left font-medium"
+                className="px-4 py-2 border-b text-left font-medium"
                 style={{ minWidth: "140px" }}
               >
                 Name
               </th>
               <th
-                className=" px-4 py-2 border-b text-left font-medium"
+                className="px-4 py-2 border-b text-left font-medium"
                 style={{ minWidth: "100px" }}
               >
                 Price
               </th>
-              <th className=" px-4 py-2 border-b text-left font-medium">Qty</th>
+              <th className="px-4 py-2 border-b text-left font-medium">Qty</th>
               <th
-                className=" px-4 py-2 border-b text-left font-medium"
+                className="px-4 py-2 border-b text-left font-medium"
                 style={{ minWidth: "240px" }}
               >
                 Description
               </th>
               <th
-                className=" px-4 py-2 border-b text-left font-medium"
+                className="px-4 py-2 border-b text-left font-medium"
                 style={{ minWidth: "120px" }}
               >
-                Ststus
+                Status
               </th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
-              <tr
-                key={product.id}
-                className={`border-b-2 h-9 border-gray-300 ${
-                  index === products.length - 1 ? "border-none" : ""
-                }`}
-              >
-                <td className=" px-4 py-2 font-medium">{product.id}</td>
-                <td className=" px-4 py-2">{product.name}</td>
-                <td className=" px-4 py-2">{product.price}/=</td>
-                <td className=" px-4 py-2">{product.ammount}</td>
-                <td className=" px-4 py-2">{product.description}</td>
-                <td className=" px-4 py-2">
-                  {product.is_active ? "Active" : "Discontinued"}
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product, index) => (
+                <tr
+                  key={product.id}
+                  className={`border-b-2 h-9 border-gray-300 ${
+                    index === filteredProducts.length - 1 ? "border-none" : ""
+                  }`}
+                >
+                  <td className="px-4 py-2 font-medium">{product.id}</td>
+                  <td className="px-4 py-2">{product.name}</td>
+                  <td className="px-4 py-2">{product.price}/=</td>
+                  <td className="px-4 py-2">{product.ammount}</td>
+                  <td className="px-4 py-2">{product.description}</td>
+                  <td className="px-4 py-2">
+                    {product.is_active ? "Active" : "Discontinued"}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="px-4 py-2 text-center">
+                  No records found
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
