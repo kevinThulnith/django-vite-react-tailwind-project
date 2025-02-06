@@ -3,6 +3,7 @@ from django.urls import path, include
 from api.views import CreateUserView, UserInfoView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+# TODO: Set up backend urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', UserInfoView.as_view(), name='user_info'),
