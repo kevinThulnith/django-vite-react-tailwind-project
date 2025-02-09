@@ -18,6 +18,7 @@ A full-stack web application for managing products with <b>user authentication</
 - 🗑️ Delete Product: Remove a product from the system.
 - ✏️ Edit Product: Update product details (only the author can edit).
 - 👀 View Products: Browse all products in the system.
+- 🔎 Search Products: Search products by name, id, description.
 
 ### Authorization
 
@@ -158,10 +159,11 @@ frontend/
 
 ## 🛒 Product Management Flow
 
-- Add Product: Authenticated users can add a new product.
-- View Products: All users can view the list of products.
 - Edit Product: Only the author of a product can edit its details.
 - Delete Product: Only the author of a product can delete it.
+- Add Product: Authenticated users can add a new product.
+- View Products: All users can view the list of products.
+- Search products: All users can search the list of products.
 
 ## 🧪 Testing
 
@@ -185,8 +187,8 @@ npm test
 
 ### Users
 
-- `POST /api/register/` - Register a new user.
-- `POST /api/login/` - Log in and get an authentication token.
+- `POST /api/user/register/` - Register a new user.
+- `POST /api/token/` - Log in and get an authentication token.
 - `POST /api/logout/` - Log out and invalidate the token.
 
 ### Products
@@ -194,8 +196,8 @@ npm test
 - `GET /api/products/all/` - Get a list of all products.
 - `POST /api/products/` - Add a new product (authenticated users only).
 - `GET /api/products/<id>/` - Get details of a specific product.
-- `PUT /api/products/<id>/` - Update a product (author only).
-- `DELETE /api/products/<id>/` - Delete a product (author only).
+- `PUT /api/products/update/<id>/` - Update a product (author only).
+- `DELETE /api/products/delete/<id>/` - Delete a product (author only).
 
 ## 📸 Screenshots
 

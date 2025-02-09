@@ -17,6 +17,7 @@ function UpdateProduct() {
     is_active: true,
   });
 
+  // TODO: Fetch product data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,22 +34,13 @@ function UpdateProduct() {
     fetchData();
   }, [id]);
 
+  // TODO: Handle form submission
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-
-    if (type === "radio") {
-      // For radio buttons, convert the value to a boolean
-      setProduct((prevProduct) => ({
-        ...prevProduct,
-        [name]: value === "true", // Convert "true" to true and "false" to false
-      }));
-    } else {
-      // For text fields, assign the value directly
-      setProduct((prevProduct) => ({
-        ...prevProduct,
-        [name]: value,
-      }));
-    }
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: type === "radio" ? value === "true" : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
