@@ -3,7 +3,6 @@ from .serializers import UserSerializer, ProductSerializer
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from django.shortcuts import render
 from rest_framework import generics
 from .models import Product
 
@@ -18,8 +17,7 @@ class CreateUserView(generics.CreateAPIView):
 # TODO: Create a view for getting all products | creating a new product 
 class ProductCreateView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
-    # !Only authenticated users can access this view
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
     
     def get_queryset(self):
         user = self.request.user
@@ -33,8 +31,7 @@ class ProductCreateView(generics.ListCreateAPIView):
 
 class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
-    # !Only authenticated users can access this view
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
     
     def get_queryset(self):
         user = self.request.user
@@ -43,8 +40,7 @@ class ProductListView(generics.ListAPIView):
 # TODO: Create a view for updating a product | getting a product | deleting a product
 class ProductUpdateView(generics.UpdateAPIView):
     serializer_class = ProductSerializer
-    # !Only authenticated users can access this view
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
 
     def get_queryset(self):
         user = self.request.user
@@ -52,8 +48,7 @@ class ProductUpdateView(generics.UpdateAPIView):
     
 class ProductDetailView(generics.RetrieveAPIView):
     serializer_class = ProductSerializer
-    # !Only authenticated users can access this view
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
 
     def get_queryset(self):
         user = self.request.user
@@ -61,8 +56,7 @@ class ProductDetailView(generics.RetrieveAPIView):
             
 class ProdctDeleteView(generics.DestroyAPIView):
     serializer_class = ProductSerializer
-    # !Only authenticated users can access this view
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
     
     def get_queryset(self):
         user = self.request.user
@@ -70,8 +64,7 @@ class ProdctDeleteView(generics.DestroyAPIView):
     
 # TODO: To send user credentials to the frontend
 class UserInfoView(APIView):
-    # !Only authenticated users can access this view
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
     serializer_class = UserSerializer
     
     def get(self, request):

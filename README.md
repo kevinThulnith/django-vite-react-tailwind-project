@@ -189,7 +189,7 @@ npm test
 
 - `POST /api/user/register/` - Register a new user.
 - `POST /api/token/` - Log in and get an authentication token.
-- `POST /api/logout/` - Log out and invalidate the token.
+- `POST /api/token/blacklist/` - Log out and invalidate the token.
 
 ### Products
 

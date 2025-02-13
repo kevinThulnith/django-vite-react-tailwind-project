@@ -16,25 +16,14 @@ function Home() {
 
   // TODO: Fetch user info and products
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await api.get("api/user/", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
-        });
-        setUserInfo(res.data);
-        const resProducts = await api.get("api/products/all/", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
-        });
-        setProducts(resProducts.data);
-      } catch (error) {
-        alert(error);
-      }
-    };
-    fetchData();
+    api
+      .get("api/user/")
+      .then((res) => setUserInfo(res.data))
+      .catch((error) => alert(error));
+    api
+      .get("api/products/all/")
+      .then((res) => setProducts(res.data))
+      .catch((error) => alert(error));
   }, []);
 
   // TODO: Filter products based on search query
@@ -63,7 +52,7 @@ function Home() {
           Add Product
         </a>
       </div>
-      <div className="min-w-full bg-white rounded-lg shadow-md p-6 mt-4 overflow-x-auto text-gray-500">
+      <div className="min-w-full bg-white rounded-lg shadow-md p-6 mt-4 max-h-f text-gray-500">
         <div className="w-full flex justify-between items-center pt-2">
           <h2 className="text-2xl font-medium">View All Products</h2>
           <div className="relative">
@@ -117,7 +106,7 @@ function Home() {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="overflow-y-auto">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product, index) => (
                 <tr

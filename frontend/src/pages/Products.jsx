@@ -9,19 +9,10 @@ function Products() {
 
   // TODO: Fetch products
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resProducts = await api.get("api/products/", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
-        });
-        setProducts(resProducts.data);
-      } catch (error) {
-        alert(error);
-      }
-    };
-    fetchData();
+    api
+      .get("api/products/")
+      .then((res) => setProducts(res.data))
+      .catch((error) => alert(error));
   }, []);
 
   // !Filter products based on search query

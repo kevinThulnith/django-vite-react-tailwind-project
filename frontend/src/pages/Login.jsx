@@ -14,16 +14,15 @@ function Login() {
     setLoading(true);
     e.preventDefault();
 
-    try {
-      const res = await api.post("api/token/", { username, password });
-      localStorage.setItem(ACCESS_TOKEN, res.data.access);
-      localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-      navigate("/");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
-    }
+    api
+      .post("api/token/", { username, password })
+      .then((res) => {
+        localStorage.setItem(ACCESS_TOKEN, res.data.access);
+        localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+        navigate("/");
+      })
+      .catch((error) => alert(error))
+      .finally(() => setLoading(false));
   };
 
   return (

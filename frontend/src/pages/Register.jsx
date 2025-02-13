@@ -14,14 +14,11 @@ function Register() {
     setLoading(true);
     e.preventDefault();
 
-    try {
-      await api.post("api/user/register/", { username, email, password });
-      navigate("/login");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
-    }
+    api
+      .post("api/user/register/", { username, email, password })
+      .then(() => navigate("/login"))
+      .catch((error) => alert(error))
+      .finally(() => setLoading(false));
   };
 
   return (

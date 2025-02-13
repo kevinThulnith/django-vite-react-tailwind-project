@@ -19,19 +19,10 @@ function UpdateProduct() {
 
   // TODO: Fetch product data
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resProducts = await api.get(`api/products/${id}/`, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
-        });
-        setProduct(resProducts.data);
-      } catch (error) {
-        alert(error);
-      }
-    };
-    fetchData();
+    api
+      .get(`api/products/${id}/`)
+      .then((res) => setProduct(res.data))
+      .catch((error) => alert(error));
   }, [id]);
 
   // TODO: Handle form submission
@@ -47,19 +38,14 @@ function UpdateProduct() {
     setLoading(true);
     e.preventDefault();
 
-    try {
-      await api.put(`api/products/update/${id}/`, product, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access"),
-        },
-      });
-      alert("Product updated successfully");
-      navigate("/products");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
-    }
+    api
+      .put(`api/products/update/${id}/`, product)
+      .then(() => {
+        alert("Product updated successfully");
+        navigate("/products");
+      })
+      .catch((error) => alert(error))
+      .finally(() => setLoading(false));
   };
 
   return (

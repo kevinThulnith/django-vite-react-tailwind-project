@@ -14,19 +14,14 @@ function DeleteProduct() {
     setLoading(true);
     e.preventDefault();
 
-    try {
-      await api.delete(`api/products/delete/${id}/`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access"),
-        },
-      });
-      alert("Product deleted successfully!");
-      navigate("/products");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
-    }
+    api
+      .delete(`api/products/delete/${id}/`)
+      .then(() => {
+        alert("Product deleted successfully!");
+        navigate("/products");
+      })
+      .catch((error) => alert(error))
+      .finally(() => setLoading(false));
   };
 
   return (

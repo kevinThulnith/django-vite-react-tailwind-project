@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DeleteProduct from "./pages/DeleteProduct";
 import UpdateProduct from "./pages/UpdateProduct";
@@ -7,15 +7,23 @@ import Navbar from "./components/Navbar";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import Products from "./pages/Products";
+import Logout from "./pages/Logout";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import React from "react";
 
-// TODO: Hnadling logout
-function Logout() {
-  localStorage.clear();
-  return <Navigate to="/login" />;
-}
+// // TODO: Hnadling logout
+// function Logout() {
+//   useEffect(effect)
+//   // use
+//   // api
+//   //   .post(`api/token/blacklist/`, {
+//   //     refresh: localStorage.getItem("refresh"),
+//   //   })
+//   //   .catch((error) => alert(error));
+//   // localStorage.clear();
+//   return <Navigate to="/login" />;
+// }
 
 // TODO: Register and logout
 function RegisterAndLogout() {

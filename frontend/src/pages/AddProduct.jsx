@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../api";
 
@@ -9,28 +10,23 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [ammount, setQty] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
 
-    try {
-      await api.post(
-        "api/products/",
-        { name, price, description, ammount },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
-        }
-      );
-      alert("Product added successfully!");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
-    }
+    api
+      .post("api/products/", { name, price, description, ammount })
+      .then((res) => {
+        if (res.status === 201) {
+          alert("Product added successfully!");
+          navigate("/products");
+        } else alert("Something went wrong!" + res.data);
+      })
+      .catch((error) => alert(error))
+      .finally(() => setLoading(false));
   };
 
   return (
