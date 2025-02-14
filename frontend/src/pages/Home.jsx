@@ -16,14 +16,16 @@ function Home() {
 
   // TODO: Fetch user info and products
   useEffect(() => {
-    api
-      .get("api/user/")
-      .then((res) => setUserInfo(res.data))
-      .catch((error) => alert(error));
-    api
-      .get("api/products/all/")
-      .then((res) => setProducts(res.data))
-      .catch((error) => alert(error));
+    if (localStorage.getItem("refreshed") === "true") {
+      api
+        .get("api/user/")
+        .then((res) => setUserInfo(res.data))
+        .catch((error) => alert(error));
+      api
+        .get("api/products/all/")
+        .then((res) => setProducts(res.data))
+        .catch((error) => alert(error));
+    }
   }, []);
 
   // TODO: Filter products based on search query
