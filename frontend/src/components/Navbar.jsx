@@ -1,3 +1,5 @@
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import tailwindLogo from "../assets/tailwind.png";
 import djangoLogo from "../assets/django.png";
 import reactLogo from "../assets/react.png";
@@ -60,6 +62,19 @@ const Navbar = () => {
             }
           >
             Add Product
+          </NavLink>
+          <NavLink
+            to="/logout"
+            className={({ isActive }) =>
+              isActive ? "text-black" : "hover:text-gray-700"
+            }
+          >
+            Logout
+            <FontAwesomeIcon
+              icon={faRightFromBracket}
+              style={{ fontSize: "18px", marginLeft: "5px" }}
+              aria-hidden="true"
+            />
           </NavLink>
         </div>
       </div>

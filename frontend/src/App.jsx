@@ -14,16 +14,19 @@ import api from "./api";
 
 // TODO: Handle logout
 function Logout() {
-  const refreshToken = localStorage.getItem("refresh");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (refreshToken) {
-      api.post("/api/token/blacklist/", { refresh: refreshToken });
-    }
-    localStorage.clear();
-    navigate("/login");
-  }, [navigate, refreshToken]);
+    api
+      .post("/api/token/blacklist/", {
+        refresh: localStorage.getItem("refresh"),
+      })
+      .then(() => {
+        localStorage.clear();
+        window.location.reload();
+      })
+      .finally(() => navigate("/login"));
+  }, [navigate]);
 }
 
 // TODO: Handle register
@@ -86,7 +89,14 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
+        <Route
+          path="/logout"
+          element={
+            <ProtectedRoute>
+              <Logout />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/register" element={<RegisterAndLogout />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

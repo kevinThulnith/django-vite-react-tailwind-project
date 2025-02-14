@@ -19,11 +19,9 @@ function AddProduct() {
 
     api
       .post("api/products/", { name, price, description, ammount })
-      .then((res) => {
-        if (res.status === 201) {
-          alert("Product added successfully!");
-          navigate("/products");
-        } else alert("Something went wrong!" + res.data);
+      .then(() => {
+        alert("Product added successfully!");
+        navigate("/products");
       })
       .catch((error) => alert(error))
       .finally(() => setLoading(false));
