@@ -1,31 +1,32 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DeleteProduct from "./pages/DeleteProduct";
 import UpdateProduct from "./pages/UpdateProduct";
 import AddProduct from "./pages/AddProduct";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import Products from "./pages/Products";
-import Logout from "./pages/Logout";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import React from "react";
+import api from "./api";
 
-// // TODO: Hnadling logout
-// function Logout() {
-//   useEffect(effect)
-//   // use
-//   // api
-//   //   .post(`api/token/blacklist/`, {
-//   //     refresh: localStorage.getItem("refresh"),
-//   //   })
-//   //   .catch((error) => alert(error));
-//   // localStorage.clear();
-//   return <Navigate to="/login" />;
-// }
+// TODO: Handle logout
+function Logout() {
+  const refreshToken = localStorage.getItem("refresh");
+  const navigate = useNavigate();
 
-// TODO: Register and logout
+  useEffect(() => {
+    if (refreshToken) {
+      api.post("/api/token/blacklist/", { refresh: refreshToken });
+    }
+    localStorage.clear();
+    navigate("/login");
+  }, [navigate, refreshToken]);
+}
+
+// TODO: Handle register
 function RegisterAndLogout() {
   localStorage.clear();
   return <Register />;
