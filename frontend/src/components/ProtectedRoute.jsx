@@ -44,16 +44,11 @@ function ProtectedRoute({ children }) {
     const tokenExpiration = decoded.exp;
     const now = Date.now() / 1000; // Convert milliseconds to seconds
 
-    if (tokenExpiration < now) {
-      await refreshToken(); // !Refresh token
-    } else {
-      setIsAuthorized(true); // !User is authorized
-    }
+    if (tokenExpiration < now) await refreshToken(); // !Refresh token
+    else setIsAuthorized(true); // !User is authorized
   };
 
-  if (isAuthorized === null) {
-    return <div>Loading...</div>; // !Show loading state
-  }
+  if (isAuthorized === null) return <div>Loading...</div>; // !Show loading state
 
   return isAuthorized ? children : <Navigate to="/login" />; // !Redirect to login page if not authorized
 }
