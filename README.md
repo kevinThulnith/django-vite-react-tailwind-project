@@ -54,7 +54,6 @@ A full-stack web application for managing products with <b>user authentication</
 
 ```bash
 git clone https://github.com/kevinThulnith/dvrt-project.git
-cd dvrt-project/backend
 ```
 
 2. Create a virtual environment:
