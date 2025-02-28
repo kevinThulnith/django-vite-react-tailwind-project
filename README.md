@@ -1,6 +1,6 @@
 # 🚀 Django Vite React Tailwind Project
 
-A full-stack web application for managing products with <b>user authentication</b> and <b>authorization</b>. Built with <b>Django REST Framework</b> for the backend and <b>Vite + React + Tailwind CSS</b> for the frontend. Fully optimized code.
+A full-stack web application for managing products with **User Authentication** and **Authorization**. Built with **Django REST Framework** for the backend and **Vite + React + Tailwind CSS** for the frontend. Fully _**Optimized Code**_ with _**Responsive Seding**_.
 
 <img src="./screenshots/ss5.jpg">
 
@@ -28,17 +28,17 @@ A full-stack web application for managing products with <b>user authentication</
 
 ### Backend
 
-- 🐍 Python: Programming language.
-- 🎯 Django: Web framework.
-- 🔄 Django REST Framework (DRF): For building RESTful APIs.
-- 🔐 Token Authentication: Secure user authentication.
+- 🐍 **Python:** Programming language.
+- 🎯 **Django:** Web framework.
+- 🔄 **Django REST Framework (DRF):** For building RESTful APIs.
+- 🔐 **Token Authentication:** Secure user authentication.
 
 ### Frontend
 
-- ⚡ Vite: Fast build tool for React.
-- ⚛️ React: JavaScript library for building user interfaces.
-- 🎨 Tailwind CSS: Utility-first CSS framework for styling.
-- 🔄 Axios: For making HTTP requests to the backend.
+- ⚡ **Vite:** Fast build tool for React.
+- ⚛️ **React:** JavaScript library for building user interfaces.
+- 🎨 **Tailwind CSS:** Utility-first CSS framework for styling.
+- 🔄 **Axios:** For making HTTP requests to the backend.
 
 ## 🚀 Getting Started
 
