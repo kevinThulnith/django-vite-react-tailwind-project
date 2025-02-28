@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+from pathlib import Path
 import os
 
 load_dotenv()
@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-e)-x+_=*6js(on6&v9_^sw$z&=&v^o38qgq_u#41@kdtqbcq#l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*'] # !For development purposes
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
