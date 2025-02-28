@@ -53,7 +53,7 @@ A full-stack web application for managing products with **User Authentication** 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/kevinThulnith/dvrt-project.git
+git clone https://github.com/kevinThulnith/django-vite-react-tailwind-project.git
 ```
 
 2. Create a virtual environment:
