@@ -25,7 +25,7 @@ function DeleteProduct() {
   };
 
   return (
-    <div className="container">
+    <div className="container px-8">
       <div className="bg-white rounded-lg p-6 max-w-screen-md">
         <h2 className="text-2xl mb-4 font-medium">
           <FontAwesomeIcon icon={faTrash} aria-hidden="true" /> Delete Product
