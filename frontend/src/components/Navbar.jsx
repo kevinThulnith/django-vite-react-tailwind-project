@@ -41,7 +41,7 @@ const Navbar = () => {
               letterSpacing: "0.5px",
             }}
           >
-            DRVT Project
+            DVRT Project
           </NavLink>
         </div>
 
