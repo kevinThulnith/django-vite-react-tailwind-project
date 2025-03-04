@@ -115,6 +115,28 @@ npm run dev
 http://localhost:5173/
 ```
 
+## To Host on Local Network
+
+1. Get device **Ip** address
+
+```bash
+ipconfig getifaddr en0 // in windows ipconfig
+```
+
+2. Start bachend
+
+```bash
+py .\manage.py runserver <Device Ip address>:8000
+```
+
+3. Start frontend
+
+change **.env** file fist
+
+```bash
+npx vite --host {Device Ip Address}
+```
+
 ## 📂 Project Structure
 
 ### Backend
