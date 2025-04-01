@@ -1,6 +1,16 @@
-# 🚀 Django Vite React Tailwind Project
+[![Python IDLE](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
+[![Django](https://img.shields.io/badge/Django-%23092E20.svg?logo=django&logoColor=white)](#)
+![DRF](https://img.shields.io/badge/Django_REST-FF1709?logo=django&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?logo=JSON%20web%20tokens)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff)](#)
+[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white)
+[![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#)
 
-A full-stack web application for managing products with **User Authentication** and **Authorization**. Built with **Django REST Framework** for the backend and **Vite + React + Tailwind CSS** for the frontend. Fully _**Optimized Code**_ with _**Responsive Seding**_.
+# 🚀✨ Django Vite React Tailwind Project ✨🚀
+
+A **full-stack web application** for managing products with 🔐 **User Authentication** and **Authorization**. ✨ Built with **Django | Django REST Framework** for the backend and **Vite | React | Tailwind CSS** for the frontend. ⚡ **fully Optimized Code** with **Fully Responsive Desing** for all devices! 🖥️📱
 
 <img src="./screenshots/ss5.jpg">
 
@@ -8,32 +18,33 @@ A full-stack web application for managing products with **User Authentication** 
 
 ### User Authentication
 
-- 👤 Register: Create a new user account.
-- 🔑 Login: Authenticate and access the system.
-- 🚪 Logout: Securely log out of the system.
+- 👤 **Register**: Create a new user account.
+- 🔑 **Login**: Authenticate and access the system.
+- 🚪 **Logout**: Securely log out of the system.
 
 ### Product Management
 
-- 🛒 Add Product: Add a new product to the system.
-- 🗑️ Delete Product: Remove a product from the system.
-- ✏️ Edit Product: Update product details (only the author can edit).
-- 👀 View Products: Browse all products in the system.
-- 🔎 Search Products: Search products by name, id, description.
+- ➕ **Add Product**: Add a new product to the system.
+- 🗑️ **Delete Product**: Remove a product from the system.
+- ✏️ **Edit Product**: Update product details (only the author can edit).
+- 👀 **View Products**: Browse all products in the system.
+- 🔎 **Search Products**: Search products by name, id, description.
 
 ### Authorization
 
 - 🔒 Only the author of a product can edit or delete it.
+- 🔓 All users can view the product list
 
 ## 🛠️ Tech Stack
 
-### Backend
+### 🔙 Backend
 
 - 🐍 **Python:** Programming language.
 - 🎯 **Django:** Web framework.
 - 🔄 **Django REST Framework (DRF):** For building RESTful APIs.
 - 🔐 **Token Authentication:** Secure user authentication.
 
-### Frontend
+### 🔝 Frontend
 
 - ⚡ **Vite:** Fast build tool for React.
 - ⚛️ **React:** JavaScript library for building user interfaces.
@@ -42,11 +53,11 @@ A full-stack web application for managing products with **User Authentication** 
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
-- Python 3.x
-- Node.js
-- npm or yarn
+- 🐍 Python 3.x
+- 📦 Node.js
+- 📦 npm or yarn
 
 ## Backend Setup
 
