@@ -2,6 +2,7 @@
 [![Django](https://img.shields.io/badge/Django-%23092E20.svg?logo=django&logoColor=white)](#)
 ![DRF](https://img.shields.io/badge/Django_REST-FF1709?logo=django&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?logo=JSON%20web%20tokens)
+![alt text](https://img.shields.io/badge/SQLite-07405E?logo=sqlite&logoColor=white)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff)](#)
 [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
@@ -42,7 +43,8 @@ A **full-stack web application** for managing products with 🔐 **User Authenti
 - 🐍 **Python:** Programming language.
 - 🎯 **Django:** Web framework.
 - 🔄 **Django REST Framework (DRF):** For building RESTful APIs.
-- 🔐 **Token Authentication:** Secure user authentication.
+- 🔐 **Simple JWT**: For JSON Web Token authentication.
+- 💾 **SQLite** (Default): Lightweight disk-based database (easily swappable).
 
 ### 🔝 Frontend
 
@@ -50,16 +52,19 @@ A **full-stack web application** for managing products with 🔐 **User Authenti
 - ⚛️ **React:** JavaScript library for building user interfaces.
 - 🎨 **Tailwind CSS:** Utility-first CSS framework for styling.
 - 🔄 **Axios:** For making HTTP requests to the backend.
+- 📦 **Node.js/npm:** JavaScript runtime and package manager.
 
 ## 🚀 Getting Started
 
 ### 📋 Prerequisites
 
-- 🐍 Python 3.x
-- 📦 Node.js
-- 📦 npm or yarn
+- 🐍 Python 3.x installed.
+- 📦 Node.js and npm (or yarn) installed.
+- 💾 Database Setup:
+  - The project uses SQLite by default (no extra setup needed).
+  - If using PostgreSQL: Ensure PostgreSQL is installed and running. You might also need C++ build tools installed on your system (build-essential on Debian/Ubuntu, Build Tools for Visual Studio on Windows) for the psycopg2 package.
 
-## Backend Setup
+## ⚙️ Backend Setup
 
 1. Clone the repository:
 
@@ -100,7 +105,7 @@ python manage.py runserver
 http://localhost:8000/
 ```
 
-## Frontend Setup
+## ⚙️ Frontend Setup
 
 1. Navigate to the frontend directory:
 
@@ -114,25 +119,34 @@ cd ../frontend
 npm install
 ```
 
-3. Start the Vite development server:
+3. Configure API Base URL:
+   - Create a .env file in the frontend directory if it doesn't exist, and set the backend API URL:
+
+```sh
+VITE_API_BASE_URL=http://localhost:8000
+```
+
+4. Start the Vite development server:
 
 ```bash
 npm run dev
 ```
 
-4. Access the frontend at:
+5. Access the frontend at:
 
 ```bash
 http://localhost:5173/
 ```
 
-## To Host on Local Network
+## 🌐 Hosting on Local Network
+
+To access the application from other devices on your local network:
 
 1. Get device **Ip** address
 
-```bash
-ipconfig getifaddr en0 // in windows ipconfig
-```
+   - Windows: ipconfig (Look for "IPv4 Address" under your active network adapter)
+   - macOS: ipconfig getifaddr en0 (or en1 for Wi-Fi)
+   - Linux: ip addr show (Look for inet under your active network interface)
 
 2. Start bachend
 
@@ -142,7 +156,7 @@ py .\manage.py runserver <Device Ip address>:8000
 
 3. Start frontend
 
-change **.env** file fist
+   - change **.env** file fist
 
 ```bash
 npx vite --host {Device Ip Address}
@@ -184,18 +198,29 @@ frontend/
 
 ## 🔐 Authentication Flow
 
-- Register: Users can create an account by providing their details.
-- Login: Users log in with their credentials and receive an authentication token.
-- Protected Routes: Only authenticated users can access product management features.
-- Logout: Users can log out, and their token is invalidated.
+- **Register:** A new user provides credentials (e.g., username, email, password) via the frontend form.
+- **API Call:** Frontend sends a POST request to `/api/user/register/`.
+- **Backend:** Creates the new user in the database.
+- **Login:** User provides login credentials.
+- **API Call:** Frontend sends a POST request to `/api/token/` (Simple JWT endpoint).
+- **Backend:** Verifies credentials, generates access and refresh JWT tokens, and returns them.
+- **Frontend:** Stores the tokens (e.g., in local storage or memory) and uses the `access` token in the Authorization: `Bearer <token>` header for subsequent protected requests.
+
+- **Protected Routes:** Frontend routes/components check for a valid token before rendering. API requests to protected endpoints are validated by the backend using the token.
+
+- **Logout:** User clicks logout.
+
+- **API Call:** Frontend sends a POST request to `/api/token/blacklist/` with the refresh token (optional but good practice).
+
+- **Frontend:** Removes tokens from storage, redirecting the user (e.g., to the login page).
 
 ## 🛒 Product Management Flow
 
-- Edit Product: Only the author of a product can edit its details.
-- Delete Product: Only the author of a product can delete it.
-- Add Product: Authenticated users can add a new product.
-- View Products: All users can view the list of products.
-- Search products: All users can search the list of products.
+- **Edit Product:** Only the author of a product can edit its details.
+- **Delete Product:** Only the author of a product can delete it.
+- **Add Product:** Authenticated users can add a new product.
+- **View Products:** All users can view the list of products.
+- **Search products:** All users can search the list of products.
 
 ## 🧪 Testing
 
