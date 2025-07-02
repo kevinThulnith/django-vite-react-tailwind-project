@@ -120,7 +120,7 @@ function Home() {
                   <td className="px-4 py-2 font-medium">{product.id}</td>
                   <td className="px-4 py-2">{product.name}</td>
                   <td className="px-4 py-2">{product.price}/=</td>
-                  <td className="px-4 py-2">{product.ammount}</td>
+                  <td className="px-4 py-2">{product.amount}</td>
                   <td className="px-4 py-2">{product.description}</td>
                   <td className="px-4 py-2">
                     <span

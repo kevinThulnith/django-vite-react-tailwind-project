@@ -99,7 +99,7 @@ function Products() {
                 filteredProducts.map((product, index) => (
                   <tr
                     key={product.id}
-                    className={`border-b-2 min-h-12 border-gray-300 ${
+                    className={`border-b-2 h-12 border-gray-300 ${
                       index === filteredProducts.length - 1 ? "border-none" : ""
                     }`}
                   >
@@ -108,10 +108,18 @@ function Products() {
                     </td>
                     <td className="px-4 py-2">{product.name}</td>
                     <td className="px-4 py-2">{product.price}/=</td>
-                    <td className="px-4 py-2">{product.ammount}</td>
+                    <td className="px-4 py-2">{product.amount}</td>
                     <td className="px-4 py-2">{product.description}</td>
                     <td className="px-4 py-2">
-                      {product.is_active ? "Active" : "Discontinued"}
+                      <span
+                        className={`inline-block px-3 py-1 text-sm font-semibold leading-tight rounded-full ${
+                          product.is_active
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {product.is_active ? "Active" : "Discontinued"}
+                      </span>
                     </td>
                     <td className="text-center">
                       <a

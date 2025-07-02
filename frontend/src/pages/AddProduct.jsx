@@ -8,7 +8,7 @@ import api from "../api";
 function AddProduct() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [ammount, setQty] = useState("");
+  const [amount, setQty] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [description, setDescription] = useState("");
@@ -18,7 +18,7 @@ function AddProduct() {
     e.preventDefault();
 
     api
-      .post("api/products/", { name, price, description, ammount })
+      .post("api/products/", { name, price, description, amount })
       .then(() => {
         alert("Product added successfully!");
         navigate("/products");
@@ -86,7 +86,7 @@ function AddProduct() {
             required
             id="qty"
             type="text"
-            value={ammount}
+            value={amount}
             pattern="[0-9]+"
             placeholder="Enter product quantity"
             title="Enter numbers only (e.g., 123)"

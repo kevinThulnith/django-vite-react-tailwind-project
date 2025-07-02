@@ -13,7 +13,7 @@ function UpdateProduct() {
     name: "",
     price: "",
     description: "",
-    ammount: "",
+    amount: "",
     is_active: true,
   });
 
@@ -111,9 +111,9 @@ function UpdateProduct() {
             required
             id="qty"
             type="text"
-            name="ammount"
+            name="amount"
             pattern="[0-9]+"
-            value={product.ammount}
+            value={product.amount}
             onChange={handleChange}
             placeholder="Enter product quantity"
             title="Enter numbers only (e.g., 123)"
