@@ -54,7 +54,7 @@ class ProductDetailView(generics.RetrieveAPIView):
         user = self.request.user
         return Product.objects.filter(author=user)
             
-class ProdctDeleteView(generics.DestroyAPIView):
+class ProductDeleteView(generics.DestroyAPIView):
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticated] # !Only authenticated users can access this view
     

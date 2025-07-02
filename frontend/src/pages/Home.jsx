@@ -38,8 +38,8 @@ function Home() {
 
   return (
     <div className="container">
-      <div className="w-full bg-white rounded-lg shadow-md p-6 flex justify-between items-center">
-        <h2 className="text-lg capitalize text-gray-600">
+      <div className="w-full bg-white rounded-lg shadow-md p-4 flex justify-between items-center">
+        <h2 className="text-lg capitalize text-gray-600 ml-4">
           {userInfo.username}, Welcome Back!!
         </h2>
         <a
