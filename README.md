@@ -113,6 +113,8 @@ http://localhost:8000/
 cd ../frontend
 ```
 
+create .env in ./frontend and add VITE_API_URL="Django backend url"
+
 2. Install dependencies:
 
 ```bash
