@@ -8,6 +8,7 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white)
 [![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#)
+![Static Badge](https://img.shields.io/badge/JavaScript-%23F7DF1E?style=flat&logo=javaScript&logoColor=black&color=%23F7DF1E)
 
 # 🚀✨ Django Vite React Tailwind Project ✨🚀
 
